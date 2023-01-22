@@ -1,0 +1,32 @@
+.app-header {
+	background-color: #282c34;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+  }
+  
+  .app-nav {
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: space-between;
+  }
+  
+  .app-nav-home {
+	  padding: 0 1rem;
+	  display: flex;
+	  align-items: center;
+  }
+  
+  .app-nav-controls {
+	  display: flex;
+	  justify-content: space-around;
+	  width: 25%;
+  }
+  
+  .app-nav-controls ul {
+	  display: flex;
+	  justify-content: space-evenly;
+	  width: 100%;
+  }
+  
