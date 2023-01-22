@@ -1,0 +1,10 @@
+.card-list {
+	border: 2px solid #282c34;
+	border-radius: 5px;
+	color: #282c34;
+	height: 50%;
+	margin: 0 auto;
+	min-height: 450px;
+	min-width: 400px;
+	width: 50%;
+}
