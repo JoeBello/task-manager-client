@@ -1,3 +1,1 @@
-import { CardList } from './CardList'
-
-export { CardList }
+export { CardList } from './CardList'
