@@ -1,3 +1,4 @@
+import { Board } from './Board'
 import { CardList } from './CardList'
 
-export { CardList }
+export { Board, CardList }

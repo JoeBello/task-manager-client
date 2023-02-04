@@ -1,14 +1,34 @@
+import { StrictModeDroppable } from '../../../utils'
+
 import { Card } from '../../molecules'
+import { Task } from '../../../mockData'
 
 import './CardList.css'
 
-export const CardList = () => {
+type CardListProps = {
+	listId: string
+	tasks: Task[]
+	title?: string
+}
+
+export const CardList = ({ listId, tasks, title }: CardListProps) => {
 	return (
 		<div className="card-list">
-			<Card>
-				<p>Task one</p>
-			</Card>
+			<h2>{title ?? 'Card List'}</h2>
+			<StrictModeDroppable droppableId={listId}>
+				{(provided, snapshot) =>
+					<div
+						className={snapshot.isDraggingOver ? 'dragging-over' : ''}
+						ref={provided.innerRef}
+						{...provided.droppableProps}
+					>
+						{tasks.map((task, index) =>
+							<Card key={task.id} task={task} taskIndex={index} />
+						)}
+						{provided.placeholder}
+					</div>
+				}
+			</StrictModeDroppable>
 		</div>
-
 	)
 }

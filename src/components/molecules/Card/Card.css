@@ -1,13 +1,14 @@
 .card {
+	align-items: center;
 	border: 2px solid #282c34;
+	background-color: white;
 	border-radius: 5px;
 	color: #282c34;
+	display: flex;
+	justify-content: center;
+	min-height: 3rem;
 }
 
-.quote-item {
-	width: 200px;
-	border: 1px solid gray;
-	margin-bottom: 2px;
-	background-coilor: lightblue;
-	padding: 2px;
+.card.dragging {
+	background-color: lightblue;
 }
