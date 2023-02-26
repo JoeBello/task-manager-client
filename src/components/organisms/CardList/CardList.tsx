@@ -1,5 +1,6 @@
 import { StrictModeDroppable } from '../../../utils'
 
+import { Container } from '../../atoms'
 import { Card } from '../../molecules'
 import { Task } from '../../../mockData'
 
@@ -14,7 +15,9 @@ type CardListProps = {
 export const CardList = ({ listId, tasks, title }: CardListProps) => {
 	return (
 		<div className="card-list">
-			<h2>{title ?? 'Card List'}</h2>
+			<Container py="xl">
+				<h2>{title ?? 'Card List'}</h2>
+			</Container>
 			<StrictModeDroppable droppableId={listId}>
 				{(provided, snapshot) =>
 					<div
