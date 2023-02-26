@@ -18,8 +18,10 @@ export const Board = ({ data }: BoardProps) => {
 		// drag cancelled
 		if (!destination) return
 	
-		// position didnt change
-		if (destination.droppableId === source.droppableId && destination.index === source.index) return
+		// card column and card index didnt change
+		if (destination.droppableId === source.droppableId && destination.index === source.index) {
+			return
+		}
 	
 		const column = boardState.columns[source.droppableId]
 		const newTaskIds = [...column.taskIds]
