@@ -1,8 +1,18 @@
 {
   "compilerOptions": {
+	"baseUrl": "./src",
     "forceConsistentCasingInFileNames": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
+	"paths": {
+		"@app": ["./app"],
+		"@api": ["./api"],
+		"@atoms": ["./components/atoms"],
+		"@molecules": ["./components/molecules"],
+		"@organisms": ["./components/organisms"],
+		"@pages": ["./components/pages"],
+		"@utils": ["./utils"]
+	},
     "skipLibCheck": true,
     "target": "ESNext",
 

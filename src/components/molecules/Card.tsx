@@ -2,7 +2,7 @@ import { ReactElement } from "react"
 import styled from 'styled-components'
 import { Draggable } from "react-beautiful-dnd"
 
-import { Task } from '../../mockData'
+import { Task } from '@api'
 
 type CardProps = {
 	children?: JSX.Element

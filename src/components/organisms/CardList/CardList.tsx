@@ -1,8 +1,7 @@
-import { StrictModeDroppable } from '../../../utils'
-
-import { Container } from '../../atoms'
-import { Card } from '../../molecules'
-import { Task } from '../../../mockData'
+import { StrictModeDroppable } from '@utils'
+import { Container } from '@atoms'
+import { Card } from '@molecules'
+import { Task } from '@api'
 
 import './CardList.css'
 

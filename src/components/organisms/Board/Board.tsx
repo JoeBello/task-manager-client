@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
 import { DragDropContext, DragUpdate } from 'react-beautiful-dnd'
 
-import { CardList } from '../CardList'
-import { MockData } from "../../../mockData"
+import { CardList } from '@organisms'
+import { MockData } from "@api"
 
 import './Board.css'
 

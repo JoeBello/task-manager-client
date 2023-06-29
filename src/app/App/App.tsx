@@ -1,9 +1,9 @@
 import Header from '../Header';
-import { Board } from '../../components/organisms'
+import { Board } from '@organisms'
 
 import './App.css';
 
-import { mockData } from '../../api';
+import { mockData } from '@api';
 
 
 const App = function App() {
