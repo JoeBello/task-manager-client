@@ -11,12 +11,12 @@ type CardProps = {
 }
 
 type StyledCardProps = {
-	isDragging: boolean
+	$isDragging: boolean
 }
 
 const StyledCard = styled.div<StyledCardProps>`
 	align-items: center;
-	background-color: ${({ isDragging }) => isDragging ? 'lightblue' : 'white' };
+	background-color: ${({ $isDragging }) => $isDragging ? 'lightblue' : 'white' };
 	border-radius: 5px;
 	border: 2px solid #282c34;
 	color: #282c34;
@@ -32,7 +32,7 @@ export const Card = ({ children, task, taskIndex }: CardProps): ReactElement => 
 		<Draggable draggableId={task.id} index={taskIndex}>
 			{(provided, snapshot) => {
 				return (
-					<StyledCard isDragging={snapshot.isDragging}
+					<StyledCard $isDragging={snapshot.isDragging}
 						{...provided.draggableProps}
 						{...provided.dragHandleProps}
 						ref={provided.innerRef}
