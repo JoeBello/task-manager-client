@@ -1,6 +1,6 @@
-import './AppHeader.css'
+import './Header.css'
 
-export const AppHeader = () => {
+const Header = function Header() {
 	return (
 		<header className="app-header">
 			<nav className="app-nav">
@@ -19,3 +19,5 @@ export const AppHeader = () => {
 		</header>
 	)
 }
+
+export default Header
