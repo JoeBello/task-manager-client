@@ -13,6 +13,7 @@ export default defineConfig({
 		{ find: '@molecules', replacement: path.resolve(__dirname, 'src/components/molecules')},
 		{ find: '@organisms', replacement: path.resolve(__dirname, 'src/components/organisms')},
 		{ find: '@pages', replacement: path.resolve(__dirname, 'src/components/pages')},
+		{ find: '@routes', replacement: path.resolve(__dirname, 'src/routes')},
 		{ find: '@utils', replacement: path.resolve(__dirname, 'src/utils')}
 	]
   }

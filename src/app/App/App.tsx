@@ -1,5 +1,6 @@
 import Header from '../Header';
 import { Board } from '@organisms'
+import Router from '@routes'
 
 import './App.css';
 
@@ -10,9 +11,10 @@ const App = function App() {
 	return (
 		<div className="app">
 			<Header />
-			<div className="app-content">
+			<Router />
+			{/* <div className="app-content">
 				<Board data={mockData} />
-			</div>
+			</div> */}
 		</div>
 	)
 }

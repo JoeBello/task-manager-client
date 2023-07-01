@@ -11,6 +11,7 @@
 		"@molecules": ["./components/molecules"],
 		"@organisms": ["./components/organisms"],
 		"@pages": ["./components/pages"],
+		"@routes": ["./routes"],
 		"@utils": ["./utils"]
 	},
     "skipLibCheck": true,
