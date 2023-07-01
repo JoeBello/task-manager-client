@@ -1,5 +1,3 @@
-const AppError = function AppError() {
+export default function AppError() {
 	return <h1>Application Error</h1>
 }
-
-export default AppError

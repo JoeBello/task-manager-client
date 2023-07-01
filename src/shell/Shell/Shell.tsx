@@ -7,7 +7,7 @@ import './Shell.css';
 import { mockData } from '@api';
 
 
-const Shell = function Shell() {
+export default function Shell() {
 	return (
 		<div className="app">
 			<Header />
@@ -18,5 +18,3 @@ const Shell = function Shell() {
 		</div>
 	)
 }
-
-export default Shell;

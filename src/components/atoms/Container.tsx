@@ -49,7 +49,7 @@ interface ContainerProps extends MarginProps, PaddingProps {
 	children: ReactElement
 }
 
-export const Container = ({ children, ...rest }: ContainerProps): ReactElement => {
+export function Container({ children, ...rest }: ContainerProps): ReactElement {
 	return (
 		<StyledContainer {...rest} >
 			{children}

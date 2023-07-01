@@ -1,1 +1,3 @@
-export * from './StrictModeDroppable'
+import StrictModeDroppable from './StrictModeDroppable'
+
+export { StrictModeDroppable }

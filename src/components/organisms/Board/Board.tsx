@@ -10,7 +10,7 @@ type BoardProps = {
 	data: MockData
 }
 
-export const Board = ({ data }: BoardProps) => {
+export function Board({ data }: BoardProps) {
 	const [boardState, setBoardState] = useState(data)
 
 	const onDragEnd = useCallback((result: DragUpdate) => {

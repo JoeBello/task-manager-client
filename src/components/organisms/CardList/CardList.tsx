@@ -11,7 +11,7 @@ type CardListProps = {
 	title?: string
 }
 
-export const CardList = ({ listId, tasks, title }: CardListProps) => {
+export function CardList({ listId, tasks, title }: CardListProps) {
 	return (
 		<div className="card-list">
 			<Container py="xl">
