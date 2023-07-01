@@ -1,0 +1,44 @@
+{
+	"env": {
+		"node": true,
+		"es6": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"prettier"
+	],
+	"rules": {
+		"@typescript-eslint/no-explicit-any": "off",
+		"indent": [
+			"error",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"no-trailing-spaces": [
+			"error"
+		],
+		"prettier/prettier": [
+			"error"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
+		"semi": [
+			"error",
+			"never"
+		]
+	}
+}
