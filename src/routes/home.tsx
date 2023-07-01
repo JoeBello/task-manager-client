@@ -1,8 +1,9 @@
+import { MockData, mockData } from '@api';
 import { AppError, Home } from '@pages'
 
-const loader = async function loader() {
+const loader = async function loader(): Promise<MockData> {
 	console.log('Home loading...')
-	return true
+	return Promise.resolve(mockData)
 }
 
 const home = {
