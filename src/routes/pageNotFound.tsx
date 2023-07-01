@@ -1,4 +1,4 @@
-import { AppError, PageNotFound } from "@pages"
+import { AppError, PageNotFound } from '@pages'
 
 const pageNotFound = {
 	path: '*',

@@ -1,6 +1,6 @@
-import { ReactElement } from "react"
+import { ReactElement } from 'react'
 import styled from 'styled-components'
-import { Draggable } from "react-beautiful-dnd"
+import { Draggable } from 'react-beautiful-dnd'
 
 import { Task } from '@api'
 
@@ -16,23 +16,23 @@ type StyledCardProps = {
 
 const StyledCard = styled.div<StyledCardProps>`
 	align-items: center;
-	background-color: ${({ $isDragging }) => $isDragging ? 'lightblue' : 'white' };
+	background-color: ${({ $isDragging }) => ($isDragging ? 'lightblue' : 'white')};
 	border-radius: 5px;
 	border: 2px solid #282c34;
 	color: #282c34;
 	display: flex;
 	justify-content: center;
-	margin: .25rem auto;
+	margin: 0.25rem auto;
 	min-height: 3rem;
 `
 
 export function Card({ children, task, taskIndex }: CardProps): ReactElement {
-
 	return (
 		<Draggable draggableId={task.id} index={taskIndex}>
 			{(provided, snapshot) => {
 				return (
-					<StyledCard $isDragging={snapshot.isDragging}
+					<StyledCard
+						$isDragging={snapshot.isDragging}
 						{...provided.draggableProps}
 						{...provided.dragHandleProps}
 						ref={provided.innerRef}

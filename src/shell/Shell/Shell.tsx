@@ -1,7 +1,7 @@
-import Header from '../Header';
+import Header from '../Header'
 import Router from '@routes'
 
-import './Shell.css';
+import './Shell.css'
 
 export default function Shell() {
 	return (

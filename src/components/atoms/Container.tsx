@@ -30,7 +30,7 @@ const spaceMap: { [key: string]: string } = {
 	xl: '1rem'
 }
 
-type StyledContainerProps = MarginProps & PaddingProps 
+type StyledContainerProps = MarginProps & PaddingProps
 
 const StyledContainer = styled.div<StyledContainerProps>`
 	margin-bottom: ${({ mb, my }) => (mb && spaceMap[mb]) ?? (my && spaceMap[my])};
@@ -50,9 +50,5 @@ interface ContainerProps extends MarginProps, PaddingProps {
 }
 
 export function Container({ children, ...rest }: ContainerProps): ReactElement {
-	return (
-		<StyledContainer {...rest} >
-			{children}
-		</StyledContainer>
-	)
+	return <StyledContainer {...rest}>{children}</StyledContainer>
 }

@@ -18,18 +18,18 @@ export function CardList({ listId, tasks, title }: CardListProps) {
 				<h2>{title ?? 'Card List'}</h2>
 			</Container>
 			<StrictModeDroppable droppableId={listId}>
-				{(provided, snapshot) =>
+				{(provided, snapshot) => (
 					<div
 						className={snapshot.isDraggingOver ? 'dragging-over' : ''}
 						ref={provided.innerRef}
 						{...provided.droppableProps}
 					>
-						{tasks.map((task, index) =>
+						{tasks.map((task, index) => (
 							<Card key={task.id} task={task} taskIndex={index} />
-						)}
+						))}
 						{provided.placeholder}
 					</div>
-				}
+				)}
 			</StrictModeDroppable>
 		</div>
 	)

@@ -1,4 +1,4 @@
-import { MockData, mockData } from '@api';
+import { MockData, mockData } from '@api'
 import { AppError, Home } from '@pages'
 
 const loader = async function loader(): Promise<MockData> {

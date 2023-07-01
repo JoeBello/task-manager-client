@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import { DragDropContext, DragUpdate } from 'react-beautiful-dnd'
 
 import { CardList } from '@organisms'
-import { MockData } from "@api"
+import { MockData } from '@api'
 
 import './Board.css'
 
@@ -13,34 +13,40 @@ type BoardProps = {
 export function Board({ data }: BoardProps) {
 	const [boardState, setBoardState] = useState(data)
 
-	const onDragEnd = useCallback((result: DragUpdate) => {
-		const { destination, source, draggableId } = result
-		// drag cancelled
-		if (!destination) return
-	
-		// card column and card index didnt change
-		if (destination.droppableId === source.droppableId && destination.index === source.index) {
-			return
-		}
-	
-		const column = boardState.columns[source.droppableId]
-		const newTaskIds = [...column.taskIds]
-		newTaskIds.splice(source.index, 1)
-		newTaskIds.splice(destination.index, 0, draggableId)
-	
-		const stateUpdate = {
-			...boardState,
-			columns: {
-				...boardState.columns,
-				[column.id]: {
-					...column,
-					taskIds: newTaskIds
+	const onDragEnd = useCallback(
+		(result: DragUpdate) => {
+			const { destination, source, draggableId } = result
+			// drag cancelled
+			if (!destination) return
+
+			// card column and card index didnt change
+			if (
+				destination.droppableId === source.droppableId &&
+				destination.index === source.index
+			) {
+				return
+			}
+
+			const column = boardState.columns[source.droppableId]
+			const newTaskIds = [...column.taskIds]
+			newTaskIds.splice(source.index, 1)
+			newTaskIds.splice(destination.index, 0, draggableId)
+
+			const stateUpdate = {
+				...boardState,
+				columns: {
+					...boardState.columns,
+					[column.id]: {
+						...column,
+						taskIds: newTaskIds
+					}
 				}
 			}
-		}
-	
-		setBoardState(stateUpdate)
-	}, [boardState, setBoardState])
+
+			setBoardState(stateUpdate)
+		},
+		[boardState, setBoardState]
+	)
 
 	return (
 		<div className="board">
