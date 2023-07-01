@@ -2,12 +2,12 @@ import Header from '../Header';
 import { Board } from '@organisms'
 import Router from '@routes'
 
-import './App.css';
+import './Shell.css';
 
 import { mockData } from '@api';
 
 
-const App = function App() {
+const Shell = function Shell() {
 	return (
 		<div className="app">
 			<Header />
@@ -19,4 +19,4 @@ const App = function App() {
 	)
 }
 
-export default App;
+export default Shell;
