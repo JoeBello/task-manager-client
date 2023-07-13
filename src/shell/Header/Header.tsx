@@ -2,17 +2,20 @@ import './Header.css'
 
 export default function Header() {
 	return (
-		<header className="app-header">
+		<header className="app-header" data-testid="shell-header">
 			<nav className="app-nav">
 				<div className="app-nav-home">
-					{/* logo/icon */}
+					{
+						// TODO: add logo
+					}
 					<a href="#">Home</a>
 				</div>
 				<div className="app-nav-controls">
 					<ul>
-						<li>Add Task</li>
-						<li>Search</li>
-						{/* <li>Sign Up/Login</li> */}
+						{/*
+							TODO: authentication
+						 */}
+						<li>Log In</li>
 					</ul>
 				</div>
 			</nav>
