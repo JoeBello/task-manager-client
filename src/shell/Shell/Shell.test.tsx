@@ -1,9 +1,10 @@
-import React from 'react'
-import { render, screen } from '@testing-library/react'
 import Shell from './Shell'
+import { render } from '@testing-library/react'
 
-test('renders learn react link', () => {
-	render(<Shell />)
-	const linkElement = screen.getByText(/learn react/i)
-	expect(linkElement).toBeInTheDocument()
+describe('Shell', () => {
+	test('renders header', async () => {
+		const shell = render(<Shell />)
+		const header = await shell.queryByTestId('shell-header')
+		expect(header).toBeInTheDocument()
+	})
 })
