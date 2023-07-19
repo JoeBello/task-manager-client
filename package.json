@@ -47,9 +47,11 @@
 	},
 	"lint-staged": {
 		"src/**/*.tsx": [
-			"npm run test",
 			"npm run pretty",
 			"npm run lint"
+		],
+		"src/**/*.test.tsx": [
+			"npm run test"
 		]
 	}
 }
