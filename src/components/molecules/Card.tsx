@@ -26,7 +26,7 @@ const StyledCard = styled.div<StyledCardProps>`
 	min-height: 3rem;
 `
 
-export function Card({ children, task, taskIndex }: CardProps): ReactElement {
+export function Card({ task, taskIndex }: CardProps): ReactElement {
 	return (
 		<Draggable draggableId={task.id} index={taskIndex}>
 			{(provided, snapshot) => {
