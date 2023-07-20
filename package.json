@@ -9,7 +9,7 @@
 		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"prepare": "husky install",
-		"pretty": "prettier --write ./src/**/*.tsx",
+		"pretty": "prettier --write './src/**/*{.tsx, .test.tsx}'",
 		"pre-commit": "lint-staged",
 		"test": "vitest",
 		"coverage": "vitest --coverage"
