@@ -1,10 +1,11 @@
-import Shell from './Shell'
 import { render } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
+import Shell from './Shell'
 
 describe('Shell', () => {
-	test('renders header', async () => {
-		const shell = render(<Shell />)
-		const header = await shell.queryByTestId('shell-header')
-		expect(header).toBeInTheDocument()
+	test('renders', async () => {
+		const rendered = render(<Shell />, { wrapper: BrowserRouter })
+		const shell = await rendered.queryByTestId('shell')
+		expect(shell).toBeInTheDocument()
 	})
 })
