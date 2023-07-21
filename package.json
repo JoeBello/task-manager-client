@@ -12,6 +12,7 @@
 		"pretty": "prettier --write './src/**/*{.tsx, .test.tsx}'",
 		"pre-commit": "lint-staged",
 		"test": "vitest",
+		"test:staged": "vitest --watch false",
 		"coverage": "vitest --coverage"
 	},
 	"dependencies": {
@@ -48,12 +49,10 @@
 		"vitest": "^0.33.0"
 	},
 	"lint-staged": {
-		"src/**/*.tsx": [
+		"{src,test}/**/*.{ts,tsx}": [
 			"npm run pretty",
-			"npm run lint"
-		],
-		"src/**/*.test.tsx": [
-			"npm run test"
+			"npm run lint",
+			"npm run test:staged"
 		]
 	}
 }
