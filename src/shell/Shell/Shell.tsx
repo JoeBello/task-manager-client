@@ -1,13 +1,14 @@
+import { AppShell, MantineProvider } from '@mantine/core'
+import { Outlet } from 'react-router-dom'
 import Header from '../Header'
-import Router from '@routes'
-
-import './Shell.css'
 
 export default function Shell() {
 	return (
-		<div className="app">
-			<Header />
-			<Router />
-		</div>
+		// TODO: theme
+		<MantineProvider withGlobalStyles withNormalizeCSS>
+			<AppShell data-testid="shell" header={<Header />} padding="sm">
+				<Outlet />
+			</AppShell>
+		</MantineProvider>
 	)
 }

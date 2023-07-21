@@ -12,11 +12,12 @@
 			"@organisms": ["./components/organisms"],
 			"@pages": ["./components/pages"],
 			"@routes": ["./routes"],
+			"@shell": ["./shell"],
 			"@utils": ["./utils"]
 		},
 		"skipLibCheck": true,
 		"target": "ESNext",
-		"types": ["vitest/globals"],
+		"types": ["node", "vitest/globals", "@testing-library/jest-dom"],
 
 		/* Bundler mode */
 		"allowImportingTsExtensions": true,

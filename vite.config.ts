@@ -19,6 +19,7 @@ export default defineConfig({
 			{ find: '@organisms', replacement: `${COMPONENTS}/organisms` },
 			{ find: '@pages', replacement: `${COMPONENTS}/pages` },
 			{ find: '@routes', replacement: `${SRC}/routes` },
+			{ find: '@shell', replacement: `${SRC}/shell` },
 			{ find: '@utils', replacement: `${SRC}/utils` }
 		]
 	},

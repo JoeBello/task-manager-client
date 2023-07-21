@@ -1,3 +1,3 @@
-import App from './Shell'
+import Shell from './Shell'
 
-export default App
+export default Shell
