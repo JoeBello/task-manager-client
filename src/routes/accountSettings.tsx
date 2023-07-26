@@ -5,11 +5,11 @@ const loader = async function loader(): Promise<string> {
 	return Promise.resolve('loaded')
 }
 
-const accountSettings = {
+export const PATH = '/settings'
+
+export const route = {
 	element: <AccountSettings />,
 	errorElement: <AppError />,
 	loader,
-	path: '/settings'
+	path: PATH
 }
-
-export default accountSettings

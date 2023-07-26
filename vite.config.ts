@@ -15,6 +15,7 @@ export default defineConfig({
 			{ find: '@app', replacement: `${SRC}/app` },
 			{ find: '@api', replacement: `${SRC}/api` },
 			{ find: '@atoms', replacement: `${COMPONENTS}/atoms` },
+			{ find: '@contexts', replacement: `${SRC}/contexts` },
 			{ find: '@molecules', replacement: `${COMPONENTS}/molecules` },
 			{ find: '@organisms', replacement: `${COMPONENTS}/organisms` },
 			{ find: '@pages', replacement: `${COMPONENTS}/pages` },

@@ -1,15 +1,26 @@
+import { useContext } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import {
 	Avatar,
+	Button,
 	Container,
 	Header as AppHeader,
 	Menu,
-	Text,
 	UnstyledButton,
 	createStyles,
 	rem
 } from '@mantine/core'
-import { IconAtom2Filled, IconUser } from '@tabler/icons-react'
-import { Link } from 'react-router-dom'
+import {
+	IconAtom2Filled,
+	IconDashboard,
+	// TODO
+	// IconLogin,
+	IconLogout,
+	IconUser,
+	IconSettings
+} from '@tabler/icons-react'
+import { AuthContext } from '@contexts'
+import { LOG_IN_PATH, SIGN_UP_PATH } from '@routes'
 
 const HEADER_HEIGHT = rem(60)
 
@@ -35,28 +46,38 @@ const useStyles = createStyles(() => ({
 }))
 
 export default function Header() {
+	const location = useLocation()
+	const isAuthRoute = location?.pathname === LOG_IN_PATH || location?.pathname === SIGN_UP_PATH
 	const { classes } = useStyles()
-	const auth = true
-
-	// TODO: authentication
-	// user details
-	// avatar
-	// const user = true
+	const {
+		logOut,
+		user: { auth }
+	} = useContext(AuthContext)
 
 	return (
 		<AppHeader className={classes.root} data-testid="shell-header" height={HEADER_HEIGHT}>
 			<Container className={classes.header} size="xl">
 				<div className={classes.logo} data-testid="shell-header-logo">
 					<Link to="/">
-						{/* TODO: spin while loading */}
+						{/* TODO: spinning animation while loading */}
 						<IconAtom2Filled size={36} />
 					</Link>
 				</div>
-				{!auth && (
+				{!auth && !isAuthRoute && (
 					<span>
-						<Link className={classes.link} to="/login">
-							<Text size="lg">Log In</Text>
-						</Link>
+						{/* TODO: loading icon when authenticating */}
+						{/* TODO: mobile - login icon, hamburger */}
+
+						<Button
+							color="violet"
+							component={Link}
+							state={{ from: location }}
+							to="/login"
+							variant="outline"
+							size="md"
+						>
+							Log In
+						</Button>
 					</span>
 				)}
 				{auth && (
@@ -74,19 +95,25 @@ export default function Header() {
 							</UnstyledButton>
 						</Menu.Target>
 						<Menu.Dropdown>
-							<Menu.Item>
+							<Menu.Item icon={<IconSettings size={14} />}>
 								<Link className={classes.link} to="/settings">
 									Account Settings
 								</Link>
 							</Menu.Item>
-							<Menu.Item>
+							<Menu.Item icon={<IconDashboard size={14} />}>
 								<Link className={classes.link} to="/dashboard">
 									Dashboard
 								</Link>
 							</Menu.Item>
 							<Menu.Divider />
-							{/* TODO: onLogOut */}
-							<Menu.Item color="red">Log out</Menu.Item>
+							<Menu.Item
+								color="red"
+								component="button"
+								icon={<IconLogout size={14} />}
+								onClick={logOut}
+							>
+								Log out
+							</Menu.Item>
 						</Menu.Dropdown>
 					</Menu>
 				)}

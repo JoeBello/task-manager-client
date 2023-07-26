@@ -1,9 +1,9 @@
 import { AppError, PageNotFound } from '@pages'
 
-const pageNotFound = {
-	path: '*',
-	element: <PageNotFound />,
-	errorElement: <AppError />
-}
+export const PATH = '*'
 
-export default pageNotFound
+export const route = {
+	element: <PageNotFound />,
+	errorElement: <AppError />,
+	path: PATH
+}

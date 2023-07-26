@@ -6,11 +6,11 @@ const loader = async function loader(): Promise<MockData> {
 	return Promise.resolve(mockData)
 }
 
-const home = {
+export const PATH = '/'
+
+export const route = {
 	element: <Home />,
 	errorElement: <AppError />,
 	loader,
-	path: '/'
+	path: PATH
 }
-
-export default home

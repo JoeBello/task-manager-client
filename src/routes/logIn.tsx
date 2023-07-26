@@ -1,14 +1,14 @@
-import { AppError, Dashboard } from '@pages'
+import { AppError, LogIn } from '@pages'
 
 const loader = async function loader(): Promise<string> {
-	console.log('Dashboard loading...')
+	console.log('LogIn loading...')
 	return Promise.resolve('loaded')
 }
 
-export const PATH = '/dashboard'
+export const PATH = '/login'
 
 export const route = {
-	element: <Dashboard />,
+	element: <LogIn />,
 	errorElement: <AppError />,
 	loader,
 	path: PATH

@@ -1,24 +1,7 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { AppError } from '@pages'
-import Shell from '@shell'
-import accountSettings from './accountSettings'
-import dashboard from './dashboard'
-import home from './home'
-import logIn from './logIn'
-import pageNotFound from './pageNotFound'
-import signUp from './signUp'
-
-const router = createBrowserRouter([
-	{
-		children: [home, accountSettings, dashboard, logIn, signUp, pageNotFound],
-		element: <Shell />,
-		errorElement: <AppError />,
-		path: ''
-	}
-])
-
-const Router = function Router() {
-	return <RouterProvider router={router} />
-}
-
-export default Router
+export { PATH as ACCOUNT_SETTINGS_PATH } from './accountSettings'
+export { PATH as DASHBOARD_PATH } from './dashboard'
+export { PATH as HOME_PATH } from './home'
+export { PATH as LOG_IN_PATH } from './logIn'
+export { PATH as PAGE_NOT_FOUND_PATH } from './pageNotFound'
+export { PATH as SIGN_UP_PATH } from './signUp'
+export { default as Router } from './Router'

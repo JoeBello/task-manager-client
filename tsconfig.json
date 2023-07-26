@@ -8,6 +8,7 @@
 			"@app": ["./app"],
 			"@api": ["./api"],
 			"@atoms": ["./components/atoms"],
+			"@contexts": ["./contexts"],
 			"@molecules": ["./components/molecules"],
 			"@organisms": ["./components/organisms"],
 			"@pages": ["./components/pages"],
