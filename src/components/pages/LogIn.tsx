@@ -1,7 +1,9 @@
 import { useContext } from 'react'
-import { Box, Button, Checkbox, Container, Group, TextInput } from '@mantine/core'
+import { Link } from 'react-router-dom'
+import { Box, Button, Checkbox, Container, Group, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { AuthContext } from '@contexts'
+import { SIGN_UP_PATH } from '@routes'
 import { validation } from '@utils'
 
 const { email, password } = validation
@@ -21,6 +23,9 @@ export default function LogIn() {
 	return (
 		<Container size="xl">
 			<Box maw={300} mx="auto">
+				<Text component="h1" size="lg" ta="center">
+					Welcome back!{<br />}Please log in to your account.
+				</Text>
 				<form onSubmit={form.onSubmit((values) => logIn(values))}>
 					<TextInput
 						label="Email"
@@ -45,10 +50,13 @@ export default function LogIn() {
 						label="Remember me"
 						{...(form.getInputProps('termsOfService'), { type: 'checkbox' })}
 					/>
-					<Group position="right" mt="xl">
+					<Group mt="xl">
 						<Button type="submit" variant="light" w="100%">
 							Log In
 						</Button>
+						<Text c="blue" component={Link} to={SIGN_UP_PATH} mx="auto">
+							Sign Up
+						</Text>
 					</Group>
 				</form>
 			</Box>
