@@ -1,4 +1,5 @@
+import { AuthForm } from './AuthForm'
 import { Board } from './Board'
 import { CardList } from './CardList'
 
-export { Board, CardList }
+export { AuthForm, Board, CardList }
