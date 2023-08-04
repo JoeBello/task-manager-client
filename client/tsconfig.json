@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"paths": {
+			"@app": ["./app"],
+			"@api": ["./api"],
+			"@atoms": ["./components/atoms"],
+			"@contexts": ["./contexts"],
+			"@molecules": ["./components/molecules"],
+			"@organisms": ["./components/organisms"],
+			"@pages": ["./components/pages"],
+			"@routes": ["./routes"],
+			"@shell": ["./shell"],
+			"@utils": ["./utils"]
+		},
+		"types": ["vitest/globals", "@testing-library/jest-dom"],
+
+		/* Bundler mode */
+		"jsx": "react-jsx",
+		"moduleResolution": "bundler"
+	},
+	"extends": "../tsconfig.base.json",
+	"include": ["src"]
+}

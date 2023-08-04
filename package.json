@@ -4,21 +4,28 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "tsc && vite build",
-		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"build:client": "tsc --project 'client/tsconfig.json' && vite build",
+		"clean": "rimraf ./client/dist",
+		"dev:client": "vite",
+		"dev:server": "nodemon --watch server --exec ts-node server/src/index.ts",
+		"dev": "concurrently --kill-others 'npm:dev:client' 'npm:dev:server'",
+		"lint": "eslint './**/*.{ts,test.ts,tsx,test.tsx}' --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"prepare": "husky install",
-		"pretty": "prettier --write './src/**/*{.tsx, .test.tsx}'",
+		"pretty": "prettier --write './**/*.{ts,test.ts,tsx,test.tsx}'",
 		"pre-commit": "lint-staged",
+		"prod": "npm run clean && npm run build:client && npm run prod:server",
+		"prod:server": "NODE_ENV='production' ts-node server/src/index.ts",
 		"test": "vitest",
-		"test:staged": "vitest --watch false",
 		"coverage": "vitest --coverage"
 	},
 	"dependencies": {
+		"@fastify/static": "^6.10.2",
 		"@mantine/core": "^6.0.17",
 		"@mantine/form": "^6.0.17",
 		"@tabler/icons-react": "^2.27.0",
+		"ejs": "^3.1.9",
+		"fastify": "^4.21.0",
 		"react": "^18.2.0",
 		"react-beautiful-dnd": "^13.1.1",
 		"react-dom": "^18.2.0",
@@ -28,7 +35,7 @@
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^14.0.0",
-		"@types/node": "^20.3.2",
+		"@types/node": "^20.4.6",
 		"@types/react": "^18.0.28",
 		"@types/react-beautiful-dnd": "^13.1.4",
 		"@types/react-dom": "^18.0.11",
@@ -36,6 +43,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.57.1",
 		"@typescript-eslint/parser": "^5.57.1",
 		"@vitejs/plugin-react": "^4.0.0",
+		"concurrently": "^8.2.0",
 		"eslint": "^8.38.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier": "^4.2.1",
@@ -44,16 +52,19 @@
 		"happy-dom": "^10.3.2",
 		"husky": "^8.0.0",
 		"lint-staged": "^13.2.3",
+		"nodemon": "^3.0.1",
 		"prettier": "^2.8.8",
+		"rimraf": "^5.0.1",
+		"ts-node": "^10.9.1",
 		"typescript": "^5.0.2",
 		"vite": "^4.3.2",
 		"vitest": "^0.33.0"
 	},
 	"lint-staged": {
-		"{src,test}/**/*.{ts,tsx}": [
-			"npm run pretty",
-			"npm run lint",
-			"npm run test:staged"
+		"./client/src/**/*.{ts,tsx}": [
+			"prettier --write",
+			"eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+			"vitest --watch false"
 		]
 	}
 }

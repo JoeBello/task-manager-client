@@ -1,8 +1,11 @@
 import { defer } from 'react-router-dom'
-import { mockData } from '@api'
+import { mockData, test } from '@api'
 import { AppError, Home } from '@pages'
 
 const loader = async function loader(): Promise<unknown> {
+	const response = await test.get()
+	console.log({ response })
+
 	// TODO: loader return type
 	const mockDataPromise = new Promise((resolve) => {
 		return setTimeout(() => {

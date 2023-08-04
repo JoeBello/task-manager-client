@@ -4,12 +4,20 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 const ROOT = path.resolve(__dirname)
-const SRC = `${ROOT}/src`
+const SRC = `${ROOT}/client/src`
 const COMPONENTS = `${SRC}/components`
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [react()],
+	server: {
+		proxy: {
+			'/api': {
+				target: 'http://localhost:3000'
+			}
+		}
+	},
+	root: `${ROOT}/client`,
 	resolve: {
 		alias: [
 			{ find: '@app', replacement: `${SRC}/app` },
