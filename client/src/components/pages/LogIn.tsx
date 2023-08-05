@@ -16,7 +16,7 @@ export default function LogIn() {
 					Don't have an account?
 				</Text>
 			}
-			actionText="Sign Up"
+			actionText="Log In"
 			onSubmit={logIn}
 			message={message}
 		/>
