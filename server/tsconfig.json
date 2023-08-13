@@ -3,13 +3,16 @@
 		"baseUrl": "./src",
 		"composite": true,
 		"skipLibCheck": true,
-		"module": "ESNext",
-		"moduleResolution": "node",
-		"allowSyntheticDefaultImports": true
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"declaration": true,
+		"allowSyntheticDefaultImports": true,
+		"noUnusedParameters": false
 	},
 	"ts-node": {
-		"esm": true
+		"esm": true,
+		"files": true
 	},
 	"extends": "../tsconfig.base.json",
-	"include": ["src"]
+	"include": ["src", "@types"]
 }

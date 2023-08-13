@@ -6,7 +6,7 @@
 		"module": "ESNext",
 		"paths": {},
 		"skipLibCheck": true,
-		"target": "ESNext",
+		"target": "ES2021",
 		"types": ["node"],
 
 		/* Bundler mode */
