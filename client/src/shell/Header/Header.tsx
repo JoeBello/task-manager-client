@@ -51,7 +51,7 @@ export default function Header() {
 	const { classes } = useStyles()
 	const {
 		logOut,
-		user: { auth }
+		user: { auth, username }
 	} = useContext(AuthContext)
 
 	return (
@@ -80,7 +80,10 @@ export default function Header() {
 						</Button>
 					</span>
 				)}
-				{auth && (
+				{/*
+					// TODO: types - username should be guaranteed based on auth
+				 */}
+				{auth && username && (
 					<Menu
 						data-testid="shell-header-menu"
 						shadow="md"
@@ -110,7 +113,7 @@ export default function Header() {
 								color="red"
 								component="button"
 								icon={<IconLogout size={14} />}
-								onClick={logOut}
+								onClick={() => logOut(username)}
 							>
 								Log out
 							</Menu.Item>

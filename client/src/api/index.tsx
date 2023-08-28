@@ -1,2 +1,2 @@
 export * from './board'
-export * from './test'
+export * from './auth'

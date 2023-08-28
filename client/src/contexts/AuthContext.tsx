@@ -1,15 +1,16 @@
 import { ReactNode, createContext, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { auth } from '@api'
 
 type AuthContext = {
 	user: AuthUser
 	logIn: (values: AuthParams) => void
-	logOut: () => void
+	logOut: (username: string) => void
 	signUp: (values: AuthParams) => void
 }
 
 type AuthUser = {
-	name: string | null
+	username: string | null
 	auth: boolean
 }
 
@@ -20,7 +21,7 @@ type AuthParams = {
 }
 
 export const AuthContext = createContext<AuthContext>({
-	user: { name: null, auth: false },
+	user: { username: null, auth: false },
 	logIn: () => null,
 	logOut: () => null,
 	signUp: () => null
@@ -29,25 +30,47 @@ export const AuthContext = createContext<AuthContext>({
 export const AuthProvider = function AuthProvider({ children }: { children: ReactNode }) {
 	const location = useLocation()
 	const navigate = useNavigate()
-	const [user, setUser] = useState<AuthUser>({ name: null, auth: false })
+	const [user, setUser] = useState<AuthUser>({ username: null, auth: false })
 
 	// TODO: authentication
-	const logIn = function logIn(values: AuthParams) {
-		console.log('login: ', values)
-		setUser({ name: 'user', auth: true })
-		navigate(location.state?.from || '/')
+	const logIn = async function logIn(values: AuthParams) {
+		const response = await auth.login(values).catch((err) => err)
+
+		if (response instanceof Error) {
+			// TODO: UX - inform user
+			console.error(response)
+		} else {
+			setUser({ username: response.username, auth: true })
+			navigate(location.state?.from || '/')
+		}
 	}
 
 	// TODO: authentication
-	const logOut = function logOut() {
-		setUser({ name: null, auth: false })
-		navigate('/')
+	const logOut = async function logOut(username: string) {
+		const response = await auth.logout(username).catch((err) => err)
+
+		if (response instanceof Error) {
+			// TODO: UX - inform user
+			console.error(response)
+		} else {
+			setUser({ username: null, auth: false })
+			navigate('/')
+		}
 	}
 
-	const signUp = function signUp() {
-		console.log('signUp')
-		setUser({ name: 'user', auth: true })
+	const signUp = async function signUp(values: AuthParams) {
+		const response = await auth.signup(values).catch((err) => err)
+
+		setUser({ username: 'anyone', auth: true })
 		navigate(location.state?.from || '/')
+
+		if (response instanceof Error) {
+			// TODO: UX - inform user
+			console.error(response)
+		} else {
+			setUser({ username: response.username, auth: true })
+			navigate(location.state?.from || '/')
+		}
 	}
 
 	return (

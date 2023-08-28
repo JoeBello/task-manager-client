@@ -38,6 +38,22 @@ fastify
 		})
 	})
 	.register(api)
+	.post('/auth/login', async function (_, reply) {
+		console.log('Login')
+		reply.send({ username: 'Someone' })
+	})
+	.post('/auth/logout', async function (_, reply) {
+		console.log('Logout')
+		reply.send({ message: 'Logged out' })
+	})
+	.post('/auth/signup', async function (_, reply) {
+		console.log('Sign Up')
+		reply.send({ username: 'Anyone' })
+	})
+	.get('/api', async function (_, reply) {
+		console.log('API')
+		reply.send({ message: 'API' })
+	})
 	.get('/*', async (_, reply) => {
 		return reply.sendFile('index.html')
 	})
