@@ -16,7 +16,7 @@
 		"pre-commit": "lint-staged",
 		"prod": "npm run clean && npm run build:client && npm run prod:server",
 		"prod:server": "NODE_ENV='production' ts-node server/src/index.ts",
-		"test": "vitest",
+		"test:client": "vitest",
 		"coverage": "vitest --coverage"
 	},
 	"dependencies": {
