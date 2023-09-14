@@ -1,8 +1,6 @@
 import { Box, Button, Checkbox, Group, PasswordInput, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
-import { validation } from '@utils'
-
-const { email, password } = validation
+import { emailValidation, passwordValidation } from '@utils'
 
 interface AuthFormProps {
 	SecondaryAction?: React.ReactNode
@@ -18,7 +16,7 @@ export function AuthForm({ SecondaryAction, actionText, message, onSubmit }: Aut
 			password: '',
 			remember: false
 		},
-		validate: { email, password }
+		validate: { email: emailValidation, password: passwordValidation }
 	})
 
 	return (
