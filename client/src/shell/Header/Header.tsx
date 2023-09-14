@@ -13,8 +13,6 @@ import {
 import {
 	IconAtom2Filled,
 	IconDashboard,
-	// TODO
-	// IconLogin,
 	IconLogout,
 	IconUser,
 	IconSettings
@@ -57,7 +55,7 @@ export default function Header() {
 	return (
 		<AppHeader className={classes.root} data-testid="shell-header" height={HEADER_HEIGHT}>
 			<Container className={classes.header} size="xl">
-				<div className={classes.logo} data-testid="shell-header-logo">
+				<div className={classes.logo}>
 					<Link to="/">
 						{/* TODO: spinning animation while loading */}
 						<IconAtom2Filled size={36} />
@@ -67,16 +65,16 @@ export default function Header() {
 					<span>
 						{/* TODO: loading icon when authenticating */}
 						{/* TODO: mobile - login icon, hamburger */}
-
 						<Button
 							color="violet"
 							component={Link}
+							size="md"
 							state={{ from: location }}
 							to="/login"
+							type="button"
 							variant="outline"
-							size="md"
 						>
-							Log In
+							Log in
 						</Button>
 					</span>
 				)}

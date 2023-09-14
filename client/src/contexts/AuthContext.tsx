@@ -2,7 +2,7 @@ import { ReactNode, createContext, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { auth } from '@api'
 
-type AuthContext = {
+export type AuthContext = {
 	user: AuthUser
 	logIn: (values: AuthParams) => void
 	logOut: (username: string) => void

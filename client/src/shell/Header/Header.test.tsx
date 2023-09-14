@@ -1,42 +1,71 @@
-import { render } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { BrowserRouter, MemoryRouter } from 'react-router-dom'
+import { AuthContext } from '@contexts'
+import { LOG_IN_PATH } from '@routes'
 import Header from './Header'
 
+const renderAuthContext = function renderAuthContext(
+	children: React.ReactElement,
+	value: AuthContext
+) {
+	return render(<AuthContext.Provider value={value}>{children}</AuthContext.Provider>, {
+		wrapper: BrowserRouter
+	})
+}
+
+const unauthenticatedContext = {
+	logIn: () => null,
+	logOut: () => null,
+	signUp: () => null,
+	user: {
+		auth: false,
+		username: null
+	}
+}
+
+const authenticatedContext = {
+	logIn: () => null,
+	logOut: () => null,
+	signUp: () => null,
+	user: {
+		auth: true,
+		username: 'Zoinks Kaboom'
+	}
+}
+
 describe('Shell header', () => {
-	test.todo('renders', async () => {
-		const rendered = render(<Header />, { wrapper: BrowserRouter })
-
-		const header = await rendered.queryByTestId('shell-header')
-		expect(header).toBeInTheDocument()
-
-		const menu = await rendered.queryByTestId('shell-header-menu')
-		expect(menu).toBeInTheDocument()
+	test('renders', async () => {
+		render(<Header />, { wrapper: BrowserRouter })
+		expect(await screen.getByTestId('shell-header')).toBeInTheDocument()
 	})
 
-	test.todo('navigation menu shows "Log In" when the user is unauthenticated', async () => {
-		const header = render(<Header />)
-		const content = await header.findByText('Log In')
-		expect(content).toBeInTheDocument()
+	test('displays "Log in" CTA when user is unauthenticated', async () => {
+		renderAuthContext(<Header />, unauthenticatedContext)
+		expect(await screen.getByText('Log in')).toBeInTheDocument()
 	})
 
-	test.todo(
-		'navigation menu shows "Account Settings" when the user is authenticated',
-		async () => {
-			const header = render(<Header />)
-			const content = await header.findByText('Account Settings')
-			expect(content).toBeInTheDocument()
-		}
-	)
+	test('doesn\'t display the "Log in" CTA when user is at auth route', async () => {
+		render(
+			<AuthContext.Provider value={unauthenticatedContext}>
+				<MemoryRouter initialEntries={[LOG_IN_PATH]}>
+					<Header />
+				</MemoryRouter>
+			</AuthContext.Provider>
+		)
 
-	test.todo('navigation menu shows "Dashboard" when the user is authenticated', async () => {
-		const header = render(<Header />)
-		const content = await header.findByText('Dashboard')
-		expect(content).toBeInTheDocument()
+		expect(await screen.queryByText('Log in')).not.toBeInTheDocument()
 	})
 
-	test.todo('navigation menu shows "Log Out" when the user is authenticated', async () => {
-		const header = render(<Header />)
-		const content = await header.findByText('Log Out')
-		expect(content).toBeInTheDocument()
+	test('displays nav menu when user is authenticated', async () => {
+		renderAuthContext(<Header />, authenticatedContext)
+		expect(await screen.queryByTestId('shell-header-menu')).toBeInTheDocument()
+	})
+
+	test('nav menu dropdown includes "Log out" option', async () => {
+		renderAuthContext(<Header />, authenticatedContext)
+		const menu = await screen.queryByTestId('shell-header-menu')
+		menu && fireEvent.click(menu)
+		expect(await screen.getByRole('menu')).toBeInTheDocument()
+		expect(await screen.getByText('Log out')).toBeInTheDocument()
 	})
 })
