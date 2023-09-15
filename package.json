@@ -67,7 +67,7 @@
 		"./client/src/**/*.{ts,tsx}": [
 			"prettier --write",
 			"eslint --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-			"vitest --watch false"
+			"vitest related --run"
 		]
 	}
 }
