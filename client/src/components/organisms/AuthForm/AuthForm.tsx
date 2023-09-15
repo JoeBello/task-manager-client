@@ -4,12 +4,17 @@ import { emailValidation, passwordValidation } from '@utils'
 
 interface AuthFormProps {
 	SecondaryAction?: React.ReactNode
-	actionText: string
 	message?: string | React.ReactNode
 	onSubmit: (values: { email: string; password: string; remember: boolean }) => void
+	submitText?: string
 }
 
-export function AuthForm({ SecondaryAction, actionText, message, onSubmit }: AuthFormProps) {
+export default function AuthForm({
+	SecondaryAction,
+	message,
+	onSubmit,
+	submitText
+}: AuthFormProps) {
 	const form = useForm({
 		initialValues: {
 			email: '',
@@ -24,7 +29,7 @@ export function AuthForm({ SecondaryAction, actionText, message, onSubmit }: Aut
 			<Text component="h1" size="lg" ta="center">
 				{message ? message : 'Welcome!'}
 			</Text>
-			<form onSubmit={form.onSubmit(onSubmit)}>
+			<form data-testid="auth-form" onSubmit={form.onSubmit(onSubmit)}>
 				<TextInput
 					label="Email"
 					mt="md"
@@ -50,7 +55,7 @@ export function AuthForm({ SecondaryAction, actionText, message, onSubmit }: Aut
 				/>
 				<Group mt="xl">
 					<Button type="submit" variant="light" w="100%">
-						{actionText}
+						{submitText ?? 'Submit'}
 					</Button>
 					{SecondaryAction}
 				</Group>

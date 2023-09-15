@@ -1,4 +1,4 @@
-import { AuthForm } from './AuthForm'
+import AuthForm from './AuthForm'
 import { Board } from './Board'
 import { CardList } from './CardList'
 

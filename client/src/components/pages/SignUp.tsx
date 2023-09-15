@@ -17,9 +17,9 @@ export default function SignUp() {
 					Already have an account?
 				</Text>
 			}
-			actionText="Sign Up"
 			onSubmit={signUp}
 			message={message}
+			submitText="Sign up"
 		/>
 	)
 }
