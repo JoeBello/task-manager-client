@@ -22,8 +22,8 @@
 	"dependencies": {
 		"@fastify/auth": "^4.3.0",
 		"@fastify/static": "^6.10.2",
-		"@mantine/core": "^6.0.17",
-		"@mantine/form": "^6.0.17",
+		"@mantine/core": "^7.0.0",
+		"@mantine/form": "^7.0.0",
 		"@tabler/icons-react": "^2.27.0",
 		"ejs": "^3.1.9",
 		"fastify": "^4.21.0",
