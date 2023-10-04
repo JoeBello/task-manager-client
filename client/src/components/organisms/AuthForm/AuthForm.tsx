@@ -25,7 +25,7 @@ export default function AuthForm({
 	})
 
 	return (
-		<Box maw={300} mx="auto">
+		<Box w="20rem">
 			<Text component="h1" size="lg" ta="center">
 				{message ? message : 'Welcome!'}
 			</Text>
@@ -53,7 +53,7 @@ export default function AuthForm({
 					label="Remember me"
 					{...(form.getInputProps('remember'), { type: 'checkbox' })}
 				/>
-				<Group mt="xl">
+				<Group mt="xl" justify="center">
 					<Button type="submit" variant="light" w="100%">
 						{submitText ?? 'Submit'}
 					</Button>

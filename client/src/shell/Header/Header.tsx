@@ -1,15 +1,6 @@
 import { useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import {
-	Avatar,
-	Button,
-	Container,
-	Header as AppHeader,
-	Menu,
-	UnstyledButton,
-	createStyles,
-	rem
-} from '@mantine/core'
+import { AppShell, Avatar, Button, Container, Menu, Text, UnstyledButton, rem } from '@mantine/core'
 import {
 	IconAtom2Filled,
 	IconDashboard,
@@ -20,47 +11,31 @@ import {
 import { AuthContext } from '@contexts'
 import { LOG_IN_PATH, SIGN_UP_PATH } from '@routes'
 
-const HEADER_HEIGHT = rem(60)
+export const HEADER_HEIGHT = rem(60)
 
-// TODO: theme
-const useStyles = createStyles(() => ({
-	root: {
-		position: 'relative',
-		zIndex: 1
-	},
-	header: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		height: '100%'
-	},
-	link: {
-		color: 'inherit',
-		textDecoration: 'none'
-	},
-	logo: {
-		lineHeight: 0
-	}
-}))
-
-export default function Header() {
+export const Header = function Header() {
 	const location = useLocation()
 	const isAuthRoute = location?.pathname === LOG_IN_PATH || location?.pathname === SIGN_UP_PATH
-	const { classes } = useStyles()
 	const {
 		logOut,
 		user: { auth, username }
 	} = useContext(AuthContext)
 
 	return (
-		<AppHeader className={classes.root} data-testid="shell-header" height={HEADER_HEIGHT}>
-			<Container className={classes.header} size="xl">
-				<div className={classes.logo}>
-					<Link to="/">
-						{/* TODO: spinning animation while loading */}
-						<IconAtom2Filled size={36} />
-					</Link>
-				</div>
+		<AppShell.Header h={HEADER_HEIGHT} data-testid="shell-header" pos="relative">
+			<Container
+				display="flex"
+				h="100%"
+				size="xl"
+				style={{
+					alignItems: 'center',
+					justifyContent: 'space-between'
+				}}
+			>
+				<Text c="inherit" component={Link} lh="0" td="none" to="/">
+					{/* TODO: spinning animation while loading */}
+					<IconAtom2Filled size={36} />
+				</Text>
 				{!auth && !isAuthRoute && (
 					<span>
 						{/* TODO: loading icon when authenticating */}
@@ -96,21 +71,22 @@ export default function Header() {
 							</UnstyledButton>
 						</Menu.Target>
 						<Menu.Dropdown>
-							<Menu.Item icon={<IconSettings size={14} />}>
-								<Link className={classes.link} to="/settings">
+							<Menu.Item leftSection={<IconSettings size={14} />}>
+								<Text c="inherit" component={Link} td="none" to="/settings">
 									Account Settings
-								</Link>
+								</Text>
 							</Menu.Item>
-							<Menu.Item icon={<IconDashboard size={14} />}>
-								<Link className={classes.link} to="/dashboard">
+							<Menu.Item leftSection={<IconDashboard size={14} />}>
+								{/* Text component= Link */}
+								<Text c="inherit" component={Link} td="none" to="/dashboard">
 									Dashboard
-								</Link>
+								</Text>
 							</Menu.Item>
 							<Menu.Divider />
 							<Menu.Item
 								color="red"
 								component="button"
-								icon={<IconLogout size={14} />}
+								leftSection={<IconLogout size={14} />}
 								onClick={() => logOut(username)}
 							>
 								Log out
@@ -119,6 +95,6 @@ export default function Header() {
 					</Menu>
 				)}
 			</Container>
-		</AppHeader>
+		</AppShell.Header>
 	)
 }

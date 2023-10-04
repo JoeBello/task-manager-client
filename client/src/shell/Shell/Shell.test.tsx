@@ -1,11 +1,10 @@
-import { render } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { screen } from '@testing-library/react'
+import { renderWithProvidersUnauthenticated } from '@utils'
 import Shell from './Shell'
 
 describe('Shell', () => {
 	test('renders', async () => {
-		const rendered = render(<Shell />, { wrapper: BrowserRouter })
-		const shell = await rendered.queryByTestId('shell')
-		expect(shell).toBeInTheDocument()
+		renderWithProvidersUnauthenticated(<Shell />)
+		expect(await screen.getByTestId('shell')).toBeInTheDocument()
 	})
 })
