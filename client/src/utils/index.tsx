@@ -1,4 +1,5 @@
 import StrictModeDroppable from './StrictModeDroppable'
 
-export { StrictModeDroppable }
+export * from './testing'
 export * from './validation'
+export { StrictModeDroppable }
