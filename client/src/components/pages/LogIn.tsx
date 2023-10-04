@@ -30,17 +30,12 @@ export default function LogIn() {
 		;(authFlow === LOGIN && setAuthFlow(SIGNUP)) || (authFlow === SIGNUP && setAuthFlow(LOGIN))
 	}
 
-	// TODO: reset form on state change?
-
 	return (
 		<Box
 			h="100%"
 			display="flex"
 			mx="auto"
-			style={{
-				alignItems: 'center',
-				justifyContent: 'center'
-			}}
+			style={{ marginTop: '25vh', justifyContent: 'center' }}
 		>
 			<AuthForm
 				SecondaryAction={
