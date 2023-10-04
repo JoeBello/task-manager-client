@@ -5,6 +5,7 @@ import Shell from './Shell'
 describe('Shell', () => {
 	test('renders', async () => {
 		renderWithProvidersUnauthenticated(<Shell />)
+
 		expect(await screen.getByTestId('shell')).toBeInTheDocument()
 	})
 })
