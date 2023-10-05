@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Box, Button, Checkbox, Group, PasswordInput, Text, TextInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import { emailValidation, passwordValidation } from '@utils'
@@ -24,10 +23,6 @@ export default function AuthForm({
 		},
 		validate: { email: emailValidation, password: passwordValidation }
 	})
-
-	useEffect(() => {
-		form.reset()
-	}, [message, submitText, SecondaryAction, onSubmit])
 
 	return (
 		<Box w="20rem">
