@@ -1,13 +1,14 @@
 {
 	"compilerOptions": {
+		"allowImportingTsExtensions": true,
+		"allowSyntheticDefaultImports": true,
 		"baseUrl": "./src",
 		"composite": true,
-		"skipLibCheck": true,
+		"declaration": true,
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
-		"declaration": true,
-		"allowSyntheticDefaultImports": true,
-		"noUnusedParameters": false
+		"noUnusedParameters": false,
+		"skipLibCheck": true
 	},
 	"ts-node": {
 		"esm": true,
