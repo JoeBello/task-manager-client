@@ -20,7 +20,6 @@
 		"coverage": "vitest --coverage"
 	},
 	"dependencies": {
-		"@fastify/auth": "^4.3.0",
 		"@fastify/static": "^6.10.2",
 		"@mantine/core": "^7.0.0",
 		"@mantine/form": "^7.0.0",

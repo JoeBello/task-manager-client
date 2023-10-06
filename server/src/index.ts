@@ -1,18 +1,34 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import Fastify from 'fastify'
-import fastifyAuth from '@fastify/auth'
 import fastifyStatic from '@fastify/static'
-import { routes } from './routes/index.ts'
-import { decorators } from './decorators.ts'
-// import { api } from './routes/api/index.ts'
+import apiRoutes from './routes/api.ts'
+import authRoutes from './routes/auth.ts'
+
+// TODO - tsconfig paths
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
+
 const DIST = path.join(__dirname, '../../client/dist')
 
 const PORT = (process.env.PORT || 3000) as number
 
+const app = Fastify({ logger: true })
+
+app.register(fastifyStatic, { root: DIST })
+	.register(authRoutes)
+	.register(apiRoutes)
+	.after(function (err) {
+		if (err) {
+			app.log.error(err)
+			process.exit(1)
+		}
+	})
+	.listen({ port: PORT })
+
 //github.com/fastify/fastify-auth/blob/7c09dd3a143df26302e2f200dde54ad0324d7da2/test/example.js#L99
+// https://www.npmjs.com/package/@fastify/session
+// https://www.npmjs.com/package/@fastify/cookie
 // TODO
 // Rough out log in flow
 // deps
@@ -36,75 +52,3 @@ const PORT = (process.env.PORT || 3000) as number
 // How long do sessions last?
 // Where and why to use cookies? (https://www.npmjs.com/package/@fastify/cookie)
 // How should Sign Up flow work?
-
-// const app = fastify({logger: true})
-
-const fastify = Fastify({ logger: true })
-
-fastify.register(fastifyStatic, {
-	root: DIST,
-	wildcard: false
-})
-
-fastify.register(fastifyAuth)
-fastify.register(routes)
-// fastify.register(decorators)
-// fastify.register(api, { prefix: '/api' })
-fastify.after((err) => console.log({ err }))
-fastify.register(decorators)
-
-// fastify.decorate('verifyPassword', function (request, reply, done) {
-// 	console.log('verifyPassword')
-// 	done()
-// })
-
-// function routes() {
-// 	fastify.route({
-// 		method: 'POST',
-// 		url: '/auth/login',
-// 		preHandler: fastify.auth([fastify.verifyPassword], { run: 'all' }),
-// 		handler: function (request, reply) {
-// 			request.log.info('Auth route')
-// 			reply.send({ hello: 'World' })
-// 		}
-// 	})
-
-// 	fastify.route({
-// 		method: 'POST',
-// 		url: '/auth/logout',
-// 		preHandler: fastify.auth([fastify.verifyPassword], { run: 'all' }),
-// 		handler: function (request, reply) {
-// 			request.log.info('Auth route')
-// 			reply.send({ hello: 'World' })
-// 		}
-// 	})
-
-// 	fastify.route({
-// 		method: 'POST',
-// 		url: '/auth/signup',
-// 		preHandler: fastify.auth([fastify.verifyPassword], { run: 'all' }),
-// 		handler: function (request, reply) {
-// 			request.log.info('Auth route')
-// 			reply.send({ hello: 'World' })
-// 		}
-// 	})
-
-// 	fastify.route({
-// 		method: 'GET',
-// 		url: '/hello',
-// 		handler: function (request, reply) {
-// 			request.log.info('Auth route')
-// 			reply.send({ i: 'love you' })
-// 		}
-// 	})
-
-// 	return fastify
-// }
-
-fastify.listen({ port: PORT }, (err, address) => {
-	if (err) {
-		fastify.log.error(err)
-		process.exit(1)
-	}
-	fastify.log.info(`server listening on ${address}`)
-})
